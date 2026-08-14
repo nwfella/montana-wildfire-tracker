@@ -1,0 +1,6 @@
+scratch/
+__pycache__/
+*.pyc
+data/snapshot.json
+data/snapshot_prev.json
+data/*.bak
