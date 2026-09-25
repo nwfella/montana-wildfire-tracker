@@ -22,7 +22,7 @@ blocks `fetch`/XHR.
 - **NWS alerts** — red flag warnings, fire weather watches, evacuations, air quality alerts (color-coded swipe strip + list)
 - **Burn status** — Montana DEQ open-burning restrictions by area (no restrictions / fully restricted / regulated by county), with the agency's contact info
 - **No-JS fallback** — static table of the top fires renders with JavaScript disabled
-- **Zero runtime network calls** — a cron refreshes the snapshot 3×/day
+- **Zero runtime network calls** — a cron refreshes the snapshot once a day (08:00 PT / 09:00 MT)
 
 ## Data sources (all public, no API keys)
 
@@ -39,7 +39,7 @@ blocks `fetch`/XHR.
 ## How it works
 
 ```
-scripts/collect.py (cron, 3×/day)
+scripts/collect.py (via scripts/publish.py, cron daily 08:00 PT)
   ├─ fetch incidents / perimeters / AQI / alerts / burn status (keyless)
   ├─ normalize + simplify geometry (Douglas-Peucker: 215K county pts → 6K)
   ├─ compute stats + county burn heat + EPA AQI
